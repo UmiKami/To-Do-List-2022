@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import { v4 as uuidv4} from "uuid";
+import TodoTask from "./TodoTask";
 
 const Todolist = () => {
     const [tasks, setTasks] = useState([{label: "Sample Task", done: false}]);
@@ -15,14 +16,12 @@ const Todolist = () => {
         }
     }
 
-    console.log(inputText);
-
     return (
         <div className="container">
             <input type="text" onKeyDown={handleKeyPress} onChange={(e)=>setInputText(e.target.value)} value={inputText}/>
             {
-                tasks.map(task => {
-                    return <h5 key={uuidv4()}>{task.label}</h5>
+                tasks.map((task, index) => {
+                    return <TodoTask key={uuidv4()} text={task.label} done={task.done} id={index} setTasks={setTasks}/>
                 })
             }
         </div>

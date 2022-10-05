@@ -10,7 +10,7 @@ Remake of my original todo-app.
 
 1. To-Do List  
     - [x] Add Tasks  
-    - [ ] Delete Tasks  
+    - [x] Delete Tasks  
     - [ ] Modify Tasks  
 2. User Authentication
     - [ ] Login (require)
