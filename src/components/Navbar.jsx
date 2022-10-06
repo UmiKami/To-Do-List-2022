@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     return (
@@ -24,33 +25,33 @@ const Navbar = () => {
                 >
                     <ul className="navbar-nav align-items-center">
                         <li className="nav-item dropdown">
-                            <a
+                            <Link
                                 className="nav-link py-0"
-                                href="\"
+                                to={"/"}
                                 role="button"
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
                                 <img src={require("../img/avatar-61fcea3c44640b7a7f2443889f1fe383.jpg")} alt="your profile" className="rounded-circle" width="40"/>
-                            </a>
+                            </Link>
                             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-dark">
                                 <li>
-                                    <a className="dropdown-item" href="\">
+                                    <Link className="dropdown-item" to={"/profile"}>
                                         Profile
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="\">
+                                    <Link className="dropdown-item" to={"/settings"}>
                                         Settings
-                                    </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <hr className="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="\">
+                                    <Link className="dropdown-item" href="\">
                                         Log Out
-                                    </a>
+                                    </Link>
                                 </li>
                             </ul>
                         </li>

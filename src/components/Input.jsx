@@ -21,8 +21,10 @@ const Input = () => {
   return (
       <input
           type="text"
+          className='form-control form-control-lg ps-3 my-4'
           onKeyDown={(e) => handleKeyPress(e)}
           onChange={(e) => handleChange(e)}
+          placeholder="Add a new task"
           value={inputText}
       />
   );
