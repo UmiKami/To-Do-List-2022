@@ -1,17 +1,17 @@
 import '../styles/App.css';
-import {useEffect, useState} from "react"
-import axios from "axios"
-import Todolist from '../components/Todolist';
+import Input from '../components/Input';
+import TodoForm from '../components/TodoForm';
 
 
 function Home() {
   document.title = "MyTodo | Home"
 
   return (
-    <div className="App">
-      <h1>MyTodo</h1>
-      <Todolist/>
-    </div>
+      <div className="App">
+          <h1>MyTodo</h1>
+          <Input />
+          <TodoForm />
+      </div>
   );
 }
 

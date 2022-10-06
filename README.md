@@ -11,6 +11,7 @@ Remake of my original todo-app.
 1. To-Do List  
     - [x] Add Tasks  
     - [x] Delete Tasks  
+    - [x] Check Tasks
     - [ ] Modify Tasks  
 2. User Authentication
     - [ ] Login (require)
