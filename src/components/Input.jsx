@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { todoActions } from '../store/todo';
 
@@ -13,10 +13,7 @@ const Input = () => {
             // if the expression is false, that means the string has a length of 0 after stripping white spaces
             const onlyWhiteSpaces = !inputText.replace(/\s/g, "").length;
 
-            !onlyWhiteSpaces &&
-                dispatch(
-                    todoActions.addTask({ label: inputText, done: false })
-                );
+            !onlyWhiteSpaces && dispatch(todoActions.addTask({ label: inputText, done: false }));
             setInputText("");
         }
     };
