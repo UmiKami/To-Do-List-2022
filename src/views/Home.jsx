@@ -1,6 +1,7 @@
 import '../styles/App.css';
 import Input from '../components/Input';
 import TodoForm from '../components/TodoForm';
+import Navbar from '../components/Navbar';
 
 
 function Home() {
@@ -8,7 +9,7 @@ function Home() {
 
   return (
       <div className="App">
-          <h1>MyTodo</h1>
+          <Navbar/>
           <Input />
           <TodoForm />
       </div>
