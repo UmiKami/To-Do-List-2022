@@ -1,3 +1,8 @@
+/* 
+/////////////////////////////////////////////////////////////
+///////////// MAIN CONTAINER STYLING /////////////
+ */
+
 .mainTask {
     transition: transform .4s ease;
     position: relative;
@@ -92,6 +97,12 @@
     animation: moveGradient 10s alternate infinite;
 }
 
+/* 
+/////////////////////////////////////////////////////////////
+///////////// EDITABLE TEXT AREA STYLE /////////////
+ */
+
+
 .taskLabel {
     font-size: 1.1rem;
     background-color: transparent;
@@ -131,13 +142,19 @@
     background: linear-gradient(-45deg, #7452ee, #e73c7e, #ff004c, #1edaa8);
 }
 
+/* 
+/////////////////////////////////////////////////////////////
+///////////// ACTION BUTTONS GROUP /////////////
+ */
+
+
 .taskActionGroup {
     width: 4rem;
     display: flex;
     justify-content: space-between;
 }
 
-/* Checkmark styling section */
+/* Checkbox styling section */
 
 .checkmarkContainer {
     display: flex;
@@ -147,6 +164,7 @@
     cursor: pointer;
 }
 
+/* input element for checkbox */
 #complete-check {
     position: absolute;
     opacity: 0;
@@ -155,6 +173,7 @@
     width: 0;
 }
 
+/* checkmark base style */
 .checkmark {
     position: absolute;
     top: 0;
@@ -165,9 +184,13 @@
     border-radius: 5px;
 }
 
+
+/* Checkmark background on hover */
 .checkmarkContainer:hover #complete-check ~ .checkmark {
     background: rgb(238, 131, 255);;
 }
+
+/* Checkmark background on checked */
 .checkmarkContainer #complete-check:checked ~ .checkmark {
     background: #ff0095;
 }

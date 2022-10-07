@@ -7,9 +7,6 @@ const TodoTask = ({ task, targetIndex }) => {
     const { label, done } = task;
     const [newText, setNewText] = useState();
 
-    // console.log("Task: ", task);
-    // console.log("Task index: ", targetIndex);
-
     const dispatch = useDispatch();
     const removeTask = () => {
         console.log("Click");
