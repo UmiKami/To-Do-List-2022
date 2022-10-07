@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { todoActions } from "../store/todo";
 import "../styles/TodoTask.css";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 /*
 * @task returns an object with the format {label: <text content>, done: <some boolean>}
@@ -10,7 +11,13 @@ import "../styles/TodoTask.css";
 
 const TodoTask = ({ task, targetIndex }) => {
     const { label, done } = task;
-    const [newText, setNewText] = useState();
+    const [newText, setNewText] = useState(label);
+    const [isTaskEmpty, setIsTaskEmpty] = useState(false);
+
+    // regex for empty string / blank spaces being read as characters
+    const onlyWhiteSpaces = !newText
+        ? true
+        : !newText.replace(/\s/g, "").length
 
     const dispatch = useDispatch();
 
@@ -23,26 +30,21 @@ const TodoTask = ({ task, targetIndex }) => {
 
         isChecked
             ? dispatch(
-                  todoActions.checkTask({
-                      checked: isChecked,
-                      targetIndex: targetIndex,
-                  })
-              )
+                todoActions.checkTask({
+                    checked: isChecked,
+                    targetIndex: targetIndex,
+                })
+            )
             : dispatch(
-                  todoActions.checkTask({
-                      checked: isChecked,
-                      targetIndex: targetIndex,
-                  })
-              );
+                todoActions.checkTask({
+                    checked: isChecked,
+                    targetIndex: targetIndex,
+                })
+            );
     };
 
     const handleEdit = (e) => {
         if (e.code === "Enter" || e.type === "blur") {
-            // regex for empty string / blank spaces being read as characters
-            const onlyWhiteSpaces = !newText
-                ? true
-                : !newText.replace(/\s/g, "").length;
-
             // on task edit, prevents the user from leaving the text input blank
             onlyWhiteSpaces && setNewText(label)
 
@@ -59,25 +61,39 @@ const TodoTask = ({ task, targetIndex }) => {
         e.code === "Enter" && e.preventDefault();
     };
 
+    useEffect(() => {
+        onlyWhiteSpaces ? setIsTaskEmpty(true) : setIsTaskEmpty(false)
+    }, [newText]);
+
     return (
         <div
-            className={`alert alert-${
-                done ? "success" : "primary"
-            } d-flex justify-content-between mainTask`}
+            className={`alert alert-${done ? "success" : "primary"
+                } d-flex justify-content-between mainTask`}
             role="alert"
         >
             <span className="taskLabelWrapper">
-                <textarea
-                    type={"text"}
-                    onChange={(e) => setNewText(e.target.value)}
-                    className="taskLabel text-primary"
-                    defaultValue={label}
-                    value={newText}
-                    onKeyDown={handleEdit}
-                    onBlur={handleEdit}
-                    maxLength="140"
-                    rows={1}
-                />
+                <OverlayTrigger
+                    placement="bottom"
+                    overlay={
+                        <Tooltip id={`tooltip-bottom`} className="d-flex justify-content-start">
+                            Your task cannot be empty!
+                        </Tooltip>
+                    }
+                    show={isTaskEmpty}
+                    
+                >
+                    <textarea
+                        type={"text"}
+                        onChange={(e) => setNewText(e.target.value)}
+                        className="taskLabel text-primary"
+                        value={newText}
+                        onKeyDown={handleEdit}
+                        onBlur={handleEdit}
+                        maxLength="140"
+                        rows={1}
+                        data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover"
+                    />
+                </OverlayTrigger>
             </span>
             <div className="taskActionGroup">
                 <label className="checkmarkContainer">
