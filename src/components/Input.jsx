@@ -8,8 +8,8 @@ const Input = () => {
 
     const handleChange = (e) => setInputText(e.target.value)
 
-    const handleKeyPress = (event) => {
-        if (event.code === "Enter") {
+    const handleKeyPress = (e) => {
+        if (e.code === "Enter") {
             // if the expression is false, that means the string has a length of 0 after stripping white spaces
             const onlyWhiteSpaces = !inputText.replace(/\s/g, "").length;
 
