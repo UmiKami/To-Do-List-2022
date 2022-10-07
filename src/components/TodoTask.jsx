@@ -3,19 +3,24 @@ import { useDispatch } from "react-redux";
 import { todoActions } from "../store/todo";
 import "../styles/TodoTask.css";
 
+/*
+* @task returns an object with the format {label: <text content>, done: <some boolean>}
+* @targetIndex allows to point to the specific task that we might want to modify
+*/
+
 const TodoTask = ({ task, targetIndex }) => {
     const { label, done } = task;
     const [newText, setNewText] = useState();
 
     const dispatch = useDispatch();
+
     const removeTask = () => {
-        console.log("Click");
         dispatch(todoActions.deleteTask(targetIndex));
     };
 
     const check = (e) => {
         const isChecked = e.target.checked;
-        console.log("Checked? ", isChecked);
+
         isChecked
             ? dispatch(
                   todoActions.checkTask({
@@ -33,13 +38,13 @@ const TodoTask = ({ task, targetIndex }) => {
 
     const handleEdit = (e) => {
         if (e.code === "Enter" || e.type === "blur") {
-            const isNewTextEmpty = !newText;
-
-            isNewTextEmpty && setNewText(label)
-
+            // regex for empty string / blank spaces being read as characters
             const onlyWhiteSpaces = !newText
                 ? true
                 : !newText.replace(/\s/g, "").length;
+
+            // on task edit, prevents the user from leaving the text input blank
+            onlyWhiteSpaces && setNewText(label)
 
             !onlyWhiteSpaces &&
                 dispatch(
@@ -50,6 +55,7 @@ const TodoTask = ({ task, targetIndex }) => {
                 );
         }
 
+        // prevents textarea from creating a new line on Enter
         e.code === "Enter" && e.preventDefault();
     };
 
