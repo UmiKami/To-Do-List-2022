@@ -75,7 +75,7 @@ const TodoTask = ({ task, targetIndex }) => {
                     value={newText}
                     onKeyDown={handleEdit}
                     onBlur={handleEdit}
-                    maxLength="200"
+                    maxLength="140"
                     rows={1}
                 />
             </span>
