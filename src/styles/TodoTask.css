@@ -1,0 +1,62 @@
+.taskLabel {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    border: none;
+    width: 90%;
+}
+
+.taskLabel:focus {
+    outline: none;
+}
+
+.taskLabelWrapper {
+    position: relative;
+    width: 90%;
+}
+
+.taskLabelWrapper::before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    top: 90%;
+}
+
+.taskLabelWrapper:focus-within::before {
+    width: 10px;
+    animation: inputFocus 4s ease infinite;
+    background-size: 1000% 1000%;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+}
+
+@keyframes inputFocus {
+    0% {
+        background-position: 0% 50%;
+        width: 0;
+        left: 0;
+    }
+
+    25% {
+        background-position: 100% 50%;
+        left: 0;
+        width: 50%;
+    }
+
+    50% {
+        width: 0%;
+        left: 50%;
+    }
+
+    75% {
+        background-position: 50% 50%;
+        left: 50%;
+        width: 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+        width: 0%;
+        left: 100%;
+        transform: rotateY(180deg)
+    }
+}

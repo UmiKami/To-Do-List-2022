@@ -12,7 +12,7 @@ Remake of my original todo-app.
     - [x] Add Tasks  
     - [x] Delete Tasks  
     - [x] Check Tasks
-    - [ ] Modify Tasks  
+    - [x] Modify Tasks  
 2. User Authentication
     - [ ] Login (require)
     - [ ] Logout (require)
