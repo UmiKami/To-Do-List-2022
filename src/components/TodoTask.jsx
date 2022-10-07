@@ -49,7 +49,7 @@ const TodoTask = ({ task, targetIndex }) => {
                 );
         }
 
-        e.code === "Enter" && e.preventDefault()
+        e.code === "Enter" && e.preventDefault();
     };
 
     return (
@@ -62,7 +62,6 @@ const TodoTask = ({ task, targetIndex }) => {
             <span className="taskLabelWrapper">
                 <textarea
                     type={"text"}
-                    
                     onChange={(e) => setNewText(e.target.value)}
                     className="taskLabel text-primary"
                     defaultValue={label}
@@ -72,14 +71,17 @@ const TodoTask = ({ task, targetIndex }) => {
                     rows={1}
                 />
             </span>
-            <div>
-                <input
-                    type="checkbox"
-                    name="complete"
-                    id="complete-check"
-                    onChange={check}
-                    checked={done}
-                />
+            <div className="taskActionGroup">
+                <label className="checkmarkContainer">
+                    <input
+                        type="checkbox"
+                        name="complete"
+                        id="complete-check"
+                        onChange={check}
+                        checked={done}
+                    />
+                    <span className="checkmark"></span>
+                </label>
                 <button
                     type="button"
                     className="btn-close"
