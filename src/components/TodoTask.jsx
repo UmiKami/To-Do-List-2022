@@ -48,23 +48,28 @@ const TodoTask = ({ task, targetIndex }) => {
                     })
                 );
         }
+
+        e.code === "Enter" && e.preventDefault()
     };
 
     return (
         <div
             className={`alert alert-${
                 done ? "success" : "primary"
-            } d-flex justify-content-between`}
+            } d-flex justify-content-between mainTask`}
             role="alert"
         >
             <span className="taskLabelWrapper">
-                <input
+                <textarea
                     type={"text"}
+                    
                     onChange={(e) => setNewText(e.target.value)}
                     className="taskLabel text-primary"
                     defaultValue={label}
                     onKeyDown={handleEdit}
                     onBlur={handleEdit}
+                    maxLength="200"
+                    rows={1}
                 />
             </span>
             <div>
