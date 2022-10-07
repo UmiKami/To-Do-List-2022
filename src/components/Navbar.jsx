@@ -32,16 +32,27 @@ const Navbar = () => {
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                             >
-                                <img src={require("../img/avatar-61fcea3c44640b7a7f2443889f1fe383.jpg")} alt="your profile" className="rounded-circle" width="40"/>
+                                <img
+                                    src={require("../img/avatar-61fcea3c44640b7a7f2443889f1fe383.jpg")}
+                                    alt="your profile"
+                                    className="rounded-circle"
+                                    width="40"
+                                />
                             </Link>
                             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-dark">
                                 <li>
-                                    <Link className="dropdown-item" to={"/profile"}>
+                                    <Link
+                                        className="dropdown-item"
+                                        to={"/profile"}
+                                    > 
                                         Profile
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link className="dropdown-item" to={"/settings"}>
+                                    <Link
+                                        className="dropdown-item"
+                                        to={"/settings"}
+                                    >
                                         Settings
                                     </Link>
                                 </li>

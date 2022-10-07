@@ -21,6 +21,7 @@ const Input = () => {
   return (
       <input
           type="text"
+          aria-label='Write text for new task'
           className='form-control form-control-lg ps-3 my-4'
           onKeyDown={(e) => handleKeyPress(e)}
           onChange={(e) => handleChange(e)}
