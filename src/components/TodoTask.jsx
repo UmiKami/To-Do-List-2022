@@ -33,6 +33,10 @@ const TodoTask = ({ task, targetIndex }) => {
 
     const handleEdit = (e) => {
         if (e.code === "Enter" || e.type === "blur") {
+            const isNewTextEmpty = !newText;
+
+            isNewTextEmpty && setNewText(label)
+
             const onlyWhiteSpaces = !newText
                 ? true
                 : !newText.replace(/\s/g, "").length;
@@ -62,6 +66,7 @@ const TodoTask = ({ task, targetIndex }) => {
                     onChange={(e) => setNewText(e.target.value)}
                     className="taskLabel text-primary"
                     defaultValue={label}
+                    value={newText}
                     onKeyDown={handleEdit}
                     onBlur={handleEdit}
                     maxLength="200"
