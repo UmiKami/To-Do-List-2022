@@ -11,8 +11,7 @@
     background: transparent;
 }
 
-.mainTask:hover {
-    z-index: 100;
+.mainTaskScaleEffect:hover {
     transform: scale(1.1);
 }
 
@@ -211,7 +210,6 @@
 /* checkmark base style */
 .checkmark {
     position: absolute;
-    top: 0;
     left: 0;
     height: 25px;
     width: 25px;
@@ -254,6 +252,23 @@
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+.btn-close-custom{
+    all: unset;
+    color: #ec9eff;
+    font-size: 1.3rem;
+    transition: color .2s ease-in;
+}
+.btn-close-custom:hover{
+    color: #303642;
+}
+
+.btn-close-custom-success{
+    color: #c2fcbe;
+}
+.btn-close-custom-success:hover{
+    color: #ff006a;
 }
 
 @keyframes inputFocus {

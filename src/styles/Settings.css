@@ -1,0 +1,9 @@
+.settingsContainer .modal-content{
+    background-color: #303642;
+    width: 75%;
+    height: 80vh;
+}
+
+.settingsContainer .modal-dialog{
+    justify-content: center;
+}
