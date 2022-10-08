@@ -67,20 +67,23 @@ const TodoTask = ({ task, targetIndex }) => {
 
     return (
         <div
-            className={`alert alert-${done ? "success" : "primary"
-                } d-flex justify-content-between mainTask`}
+            className={`alert alert-${
+                done ? "success" : "primary"
+            } d-flex justify-content-between mainTask ${done && "mainTask-success"}`}
             role="alert"
         >
             <span className="taskLabelWrapper">
                 <OverlayTrigger
                     placement="bottom"
                     overlay={
-                        <Tooltip id={`tooltip-bottom`} className="d-flex justify-content-start">
+                        <Tooltip
+                            id={`tooltip-bottom`}
+                            className="d-flex justify-content-start"
+                        >
                             Your task cannot be empty!
                         </Tooltip>
                     }
                     show={isTaskEmpty}
-                    
                 >
                     <textarea
                         type={"text"}
@@ -91,7 +94,9 @@ const TodoTask = ({ task, targetIndex }) => {
                         onBlur={handleEdit}
                         maxLength="140"
                         rows={1}
-                        data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover"
+                        data-bs-toggle="popover"
+                        data-bs-placement="bottom"
+                        data-bs-content="Bottom popover"
                     />
                 </OverlayTrigger>
             </span>

@@ -50,8 +50,29 @@
             hsl(295deg 88% 44%) 81%,
             hsl(295deg 88% 44%) 87%,
             hsl(295deg 88% 45%) 100%) 0 0 / 150% 150%;
-    /* background: linear-gradient(68deg, green 25%, rgb(104, 218, 10) 80%); */
     animation: moveGradient 10s alternate infinite;
+}
+
+.mainTask-success::after {
+    background: linear-gradient(68deg,
+            hsl(120deg 100% 25%) 0%,
+            hsl(116deg 99% 26%) 6%,
+            hsl(112deg 98% 27%) 12%,
+            hsl(110deg 97% 28%) 18%,
+            hsl(108deg 97% 30%) 24%,
+            hsl(106deg 96% 31%) 29%,
+            hsl(104deg 95% 32%) 35%,
+            hsl(103deg 95% 33%) 41%,
+            hsl(102deg 94% 34%) 47%,
+            hsl(100deg 94% 35%) 53%,
+            hsl(99deg 93% 37%) 59%,
+            hsl(98deg 93% 38%) 65%,
+            hsl(97deg 93% 39%) 71%,
+            hsl(96deg 93% 40%) 76%,
+            hsl(95deg 93% 41%) 82%,
+            hsl(94deg 93% 42%) 88%,
+            hsl(93deg 93% 43%) 94%,
+            hsl(93deg 93% 44%) 100%) 0 0 / 150% 150%;
 }
 
 .mainTask::before {
@@ -95,6 +116,20 @@
             hsl(245deg 100% 79%) 95%,
             hsl(202deg 100% 50%) 100%) 0 50%/400% 400%;
     animation: moveGradient 10s alternate infinite;
+}
+
+.mainTask-success:hover::before {
+    background-image: linear-gradient(68deg,
+            hsl(154deg 100% 49%) 0%,
+            hsl(152deg 100% 49%) 11%,
+            hsl(150deg 100% 49%) 22%,
+            hsl(147deg 100% 49%) 33%,
+            hsl(144deg 100% 49%) 44%,
+            hsl(140deg 96% 51%) 56%,
+            hsl(135deg 96% 53%) 67%,
+            hsl(128deg 95% 55%) 78%,
+            hsl(120deg 94% 57%) 89%,
+            hsl(108deg 100% 49%) 100%);
 }
 
 /* 
@@ -180,18 +215,19 @@
     left: 0;
     height: 25px;
     width: 25px;
-    background-color: rgb(241, 186, 250);
+    background-color: rgb(243, 168, 255);
     border-radius: 5px;
 }
 
 
 /* Checkmark background on hover */
-.checkmarkContainer:hover #complete-check ~ .checkmark {
-    background: rgb(238, 131, 255);;
+.checkmarkContainer:hover #complete-check~.checkmark {
+    background: rgb(238, 131, 255);
+    ;
 }
 
 /* Checkmark background on checked */
-.checkmarkContainer #complete-check:checked ~ .checkmark {
+.checkmarkContainer #complete-check:checked~.checkmark {
     background: #ff0095;
 }
 
