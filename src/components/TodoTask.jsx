@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { todoActions } from "../store/todo";
-import "../styles/TodoTask.css";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import "../styles/TodoTask.css";
 
 /*
 * @task returns an object with the format {label: <text content>, done: <some boolean>}
@@ -13,6 +13,7 @@ const TodoTask = ({ task, targetIndex }) => {
     const { label, done } = task;
     const [newText, setNewText] = useState(label);
     const [isTaskEmpty, setIsTaskEmpty] = useState(false);
+    const scaleOnHover = useSelector(state => state.settings.taskScaleOnHover)
 
     // regex for empty string / blank spaces being read as characters
     const onlyWhiteSpaces = !newText
@@ -69,7 +70,9 @@ const TodoTask = ({ task, targetIndex }) => {
         <div
             className={`alert alert-${
                 done ? "success" : "primary"
-            } d-flex justify-content-between mainTask ${done && "mainTask-success"}`}
+            } d-flex justify-content-between mainTask ${
+                done && "mainTask-success"
+            } ${scaleOnHover && "mainTaskScaleEffect"}`}
             role="alert"
         >
             <span className="taskLabelWrapper">
@@ -113,9 +116,13 @@ const TodoTask = ({ task, targetIndex }) => {
                 </label>
                 <button
                     type="button"
-                    className="btn-close"
                     onClick={() => removeTask()}
-                ></button>
+                    className={`btn-close-custom ${
+                        done && "btn-close-custom-success"
+                    }`}
+                >
+                    <i className="fa-solid fa-trash"></i>
+                </button>
             </div>
         </div>
     );
