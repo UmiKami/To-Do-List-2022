@@ -63,7 +63,7 @@ const TodoTask = ({ task, targetIndex }) => {
 
     useEffect(() => {
         onlyWhiteSpaces ? setIsTaskEmpty(true) : setIsTaskEmpty(false)
-    }, [newText]);
+    }, [newText, onlyWhiteSpaces]);
 
     return (
         <div
