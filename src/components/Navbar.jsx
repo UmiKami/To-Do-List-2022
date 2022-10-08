@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { authActions } from "../store/auth";
+import Settings from "./Settings";
 
 const Navbar = () => {
+    const dispatch = useDispatch()
+
+    const [showSettings, setShowSettings] = useState(false)
+
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+    
+    const handleLogOut = () => {
+        dispatch(authActions.setIsLoggedIn(false))    
+    }
+
+    const handleLogIn = () => {
+        dispatch(authActions.setIsLoggedIn(true))    
+    }
+
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
@@ -24,7 +41,7 @@ const Navbar = () => {
                     id="navbarNav"
                 >
                     <ul className="navbar-nav align-items-center">
-                        <li className="nav-item dropdown">
+                       {isLoggedIn ? <li className="nav-item dropdown">
                             <Link
                                 className="nav-link py-0"
                                 to={"/"}
@@ -49,26 +66,32 @@ const Navbar = () => {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link
+                                    <button
                                         className="dropdown-item"
-                                        to={"/settings"}
+                                        onClick={()=>setShowSettings(true)}
                                     >
                                         Settings
-                                    </Link>
+                                    </button>
                                 </li>
                                 <li>
                                     <hr className="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <Link className="dropdown-item" href="\">
+                                    <Link className="dropdown-item" href="\" onClick={handleLogOut}>
                                         Log Out
                                     </Link>
                                 </li>
                             </ul>
-                        </li>
+                        </li> : <li>
+                            <button className="btn btn-success" onClick={handleLogIn}>Log In</button>
+                        </li> }
                     </ul>
                 </div>
             </div>
+            <Settings
+                show={showSettings}
+                onHide={() => setShowSettings(false)}
+            />
         </nav>
     );
 };
