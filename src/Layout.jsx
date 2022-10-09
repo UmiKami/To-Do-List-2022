@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './views/Home'
 import Profile from './views/Profile'
 import Navbar from './components/Navbar'
+import firebase from './FirebaseConfig'
 
 const Layout = () => {
   return (
