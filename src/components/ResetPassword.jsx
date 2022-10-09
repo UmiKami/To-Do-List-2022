@@ -23,13 +23,12 @@ const ResetPassword = ({
                     </Form.Group>
                     <Button
                         variant="danger"
-                        type="submit"
                         className="me-3"
                         onClick={() => showResetView(false)}
                     >
                         Back
                     </Button>
-                    <Button variant="primary">Send</Button>
+                    <Button variant="primary" type="submit">Send</Button>
                 </Form>
             ) : (
                 <>
