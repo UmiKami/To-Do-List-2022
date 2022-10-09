@@ -1,0 +1,7 @@
+.signUpLink{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.signUpLink:active{
+    color: blueviolet;
+}

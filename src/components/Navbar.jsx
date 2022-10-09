@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { authActions } from "../store/auth";
+import Login from "./Login";
 import Settings from "./Settings";
 
 const Navbar = () => {
     const dispatch = useDispatch()
 
     const [showSettings, setShowSettings] = useState(false)
+    const [showLogin, setShowLogin] = useState(false)
 
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     
@@ -16,7 +18,8 @@ const Navbar = () => {
     }
 
     const handleLogIn = () => {
-        dispatch(authActions.setIsLoggedIn(true))    
+        // dispatch(authActions.setIsLoggedIn(true))
+        setShowLogin(true)    
     }
 
     return (
@@ -91,6 +94,10 @@ const Navbar = () => {
             <Settings
                 show={showSettings}
                 onHide={() => setShowSettings(false)}
+            />
+            <Login
+                show={showLogin}
+                onHide={() => setShowLogin(false)}
             />
         </nav>
     );
