@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import FirebaseAuthService from "../FirebaseAuthService";
@@ -13,15 +13,21 @@ const Navbar = () => {
     const [showLogin, setShowLogin] = useState(false)
 
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+    const profilePic = useSelector((state) => state.auth.userInfo.profilePic)
     
-    const handleLogOut = () => {
-        FirebaseAuthService.logoutUser()
-        dispatch(authActions.setIsLoggedIn(false))    
+    const handleLogOut = async() => {
+        await FirebaseAuthService.logoutUser();
+        dispatch(authActions.setIsLoggedIn(false))
     }
 
     const handleLogIn = () => {
         setShowLogin(true)    
     }
+
+    useEffect(()=>{
+        console.log(isLoggedIn);
+    }, [isLoggedIn])
+
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -54,7 +60,7 @@ const Navbar = () => {
                                 aria-expanded="false"
                             >
                                 <img
-                                    src={require("../img/avatar-61fcea3c44640b7a7f2443889f1fe383.jpg")}
+                                    src={profilePic}
                                     alt="your profile"
                                     className="rounded-circle"
                                     width="40"
@@ -81,13 +87,13 @@ const Navbar = () => {
                                     <hr className="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <Link className="dropdown-item" href="\" onClick={handleLogOut}>
+                                    <Link className="dropdown-item" href="\" onClick={()=>handleLogOut()}>
                                         Log Out
                                     </Link>
                                 </li>
                             </ul>
                         </li> : <li>
-                            <button className="btn btn-success" onClick={handleLogIn}>Log In</button>
+                            <button className="btn btn-success" onClick={()=>handleLogIn()}>Log In</button>
                         </li> }
                     </ul>
                 </div>
@@ -96,10 +102,10 @@ const Navbar = () => {
                 show={showSettings}
                 onHide={() => setShowSettings(false)}
             />
-            <Login
+            {!isLoggedIn && <Login
                 show={showLogin}
                 onHide={() => setShowLogin(false)}
-            />
+            />}
         </nav>
     );
 };

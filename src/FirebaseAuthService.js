@@ -36,6 +36,13 @@ const subscribeToAuthChanges = (handleAuthChange) => {
     })
 }
 
+const editUserInfo = (username ,photoURL) => {
+    auth.currentUser.updateProfile({
+        displayName: username,
+        photoURL: photoURL
+    })
+}
+
 const FirebaseAuthService = {
     registerUser,
     loginUser,
@@ -43,6 +50,7 @@ const FirebaseAuthService = {
     sendPasswordResetEmail,
     loginWithGoogle,
     subscribeToAuthChanges,
+    editUserInfo,
 }
 
 export default FirebaseAuthService

@@ -24,7 +24,7 @@ const Input = () => {
     };
 
     return (
-        <section className="my-4">
+        <section className="my-5">
             <input
                 type="text"
                 aria-label="Write text for new task"
@@ -34,7 +34,7 @@ const Input = () => {
                 placeholder="Add a new task"
                 value={inputText}
             />
-            <p className="text-light mt-2">Number of tasks: {tasks.length}</p>
+            <p className="text-light mt-2">You have {tasks.length} {tasks.length === 1 ? "item" : "items"} left</p>
         </section>
     );
 };
