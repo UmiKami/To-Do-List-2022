@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import FirebaseAuthService from "../FirebaseAuthService";
 import { authActions } from "../store/auth";
 import Login from "./Login";
 import Settings from "./Settings";
@@ -14,11 +15,11 @@ const Navbar = () => {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     
     const handleLogOut = () => {
+        FirebaseAuthService.logoutUser()
         dispatch(authActions.setIsLoggedIn(false))    
     }
 
     const handleLogIn = () => {
-        // dispatch(authActions.setIsLoggedIn(true))
         setShowLogin(true)    
     }
 
