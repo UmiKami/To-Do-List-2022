@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 
 const SignUp = ({
@@ -10,6 +11,12 @@ const SignUp = ({
     setHasAccount,
     handleSubmit
 }) => {
+
+    useEffect(()=>{
+        setUserEmail("");
+        setPassword("")
+    }, [])
+
     return (
         <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">

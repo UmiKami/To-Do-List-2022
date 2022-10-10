@@ -24,7 +24,8 @@ const Login = ({ show, onHide }) => {
     // checks wether the user wants to log in or sign up or reset password
     const [hasAccount, setHasAccount] = useState(true);
     const [resetPassword, showResetView] = useState(false);
-    const [emailSent, setEmailSent] = useState(false)
+    const [emailSent, setEmailSent] = useState(false);
+    const [showError, setShowError] = useState(false);
 
     // control input
     const [username, setUsername] = useState("");
@@ -77,6 +78,11 @@ const Login = ({ show, onHide }) => {
                 setPassword("");
             } catch (err) {
                 alert(err.message);
+                console.log(err.message);
+
+                if(err.message.contains("no user record")){
+
+                }
             }
         }
     };
