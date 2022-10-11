@@ -24,7 +24,7 @@ const CredentialsErrorPopup = ({ show }) => {
             }, 2000)
         }
 
-    }, [authStatusCode, show])
+    }, [authStatusCode, show, dispatch])
 
     const handleClose = (e) => {
         if (e && e.type === "click") {
@@ -44,6 +44,7 @@ const CredentialsErrorPopup = ({ show }) => {
             autoHideDuration={6000}
         >
             {authStatusCode && <Alert severity={authStatusCode >= 400 ? "error" : authStatusCode >= 200 && authStatusCode < 300 && "success"} variant="filled" sx={{ width: '100%' }}>
+                {/* The status code is updated on the Login component */}
                 {authStatusCode === 400 && "Account does not exist."}
                 {authStatusCode === 401 && "Wrong password! Try Again."}
                 {authStatusCode === 409 && "Account disabled. Come back later or reset your password." }

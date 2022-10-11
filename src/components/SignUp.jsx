@@ -15,7 +15,7 @@ const SignUp = ({
     useEffect(()=>{
         setUserEmail("");
         setPassword("")
-    }, [])
+    }, [setPassword, setUserEmail])
 
     return (
         <Form onSubmit={handleSubmit}>

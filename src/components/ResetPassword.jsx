@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
 
 const ResetPassword = ({
