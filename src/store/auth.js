@@ -4,7 +4,8 @@ const authSlice = createSlice({
     name: "auth",
     initialState: {
         isLoggedIn: false,
-        userInfo: {}
+        userInfo: {},
+        authStatusCode: null,
     },
     reducers: {
         setIsLoggedIn(state, {payload}){
@@ -12,6 +13,9 @@ const authSlice = createSlice({
         },
         setUserInfo(state, {payload}){
             state.userInfo = payload
+        },
+        setAuthStatusCode(state, {payload}){
+            state.authStatusCode = payload
         }
     }
 })

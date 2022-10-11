@@ -5,6 +5,8 @@ import FirebaseAuthService from "../FirebaseAuthService";
 import { authActions } from "../store/auth";
 import Login from "./Login";
 import Settings from "./Settings";
+import CredentialStatusPopup from "./CredentialsStatusPopup";
+
 
 const Navbar = () => {
     const dispatch = useDispatch()
@@ -18,6 +20,7 @@ const Navbar = () => {
     const handleLogOut = async() => {
         await FirebaseAuthService.logoutUser();
         dispatch(authActions.setIsLoggedIn(false))
+        dispatch(authActions.setAuthStatusCode(209))
     }
 
     const handleLogIn = () => {
@@ -106,6 +109,7 @@ const Navbar = () => {
                 show={showLogin}
                 onHide={() => setShowLogin(false)}
             />}
+            <CredentialStatusPopup show={showLogin}/>
         </nav>
     );
 };

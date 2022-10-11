@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FirebaseAuthService from "../FirebaseAuthService";
-import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store/auth";
 import SignUp from "./SignUp";
 import ResetPassword from "./ResetPassword";
@@ -25,7 +25,6 @@ const Login = ({ show, onHide }) => {
     const [hasAccount, setHasAccount] = useState(true);
     const [resetPassword, showResetView] = useState(false);
     const [emailSent, setEmailSent] = useState(false);
-    const [showError, setShowError] = useState(false);
 
     // control input
     const [username, setUsername] = useState("");
@@ -33,6 +32,7 @@ const Login = ({ show, onHide }) => {
     const [password, setPassword] = useState("");
 
     useEffect(() => {
+        console.log("Show on login:",show);
         FirebaseAuthService.subscribeToAuthChanges(setUser);
 
         // if there is a valid user logged in, we change the state to logged in
@@ -76,12 +76,18 @@ const Login = ({ show, onHide }) => {
                 await FirebaseAuthService.loginUser(email, password);
                 setUserEmail("");
                 setPassword("");
+                dispatch(authActions.setAuthStatusCode(200))
             } catch (err) {
-                alert(err.message);
-                console.log(err.message);
+                if (err.message.includes("no user record")) {
+                    dispatch(authActions.setAuthStatusCode(400))
+                }
 
-                if(err.message.contains("no user record")){
+                if (err.message.includes("password is invalid")) {
+                    dispatch(authActions.setAuthStatusCode(401))
+                }
 
+                if (err.message.includes("account has been temporarily disabled")) {
+                    dispatch(authActions.setAuthStatusCode(409))
                 }
             }
         }
@@ -138,10 +144,10 @@ const Login = ({ show, onHide }) => {
                             <Form.Label>Password</Form.Label>
                             <Form.Control
                                 type="password"
+                                required
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                required
                             />
 
                             <section className="d-flex justify-content-between mt-1">
