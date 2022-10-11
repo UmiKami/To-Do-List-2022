@@ -10,7 +10,6 @@ const CredentialsErrorPopup = ({ show }) => {
     const authStatusCode = useSelector(state => state.auth.authStatusCode)
 
     useEffect(() => {
-        console.log(authStatusCode);
         if (authStatusCode > 0) {
             setShowStatus(true)
         } else {

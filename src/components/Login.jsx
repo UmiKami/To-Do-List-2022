@@ -32,7 +32,6 @@ const Login = ({ show, onHide }) => {
     const [password, setPassword] = useState("");
 
     useEffect(() => {
-        console.log("Show on login:",show);
         FirebaseAuthService.subscribeToAuthChanges(setUser);
 
         // if there is a valid user logged in, we change the state to logged in
@@ -76,25 +75,29 @@ const Login = ({ show, onHide }) => {
                 await FirebaseAuthService.loginUser(email, password);
                 setUserEmail("");
                 setPassword("");
-                dispatch(authActions.setAuthStatusCode(200))
+                dispatch(authActions.setAuthStatusCode(200));
             } catch (err) {
                 if (err.message.includes("no user record")) {
-                    dispatch(authActions.setAuthStatusCode(400))
+                    dispatch(authActions.setAuthStatusCode(400));
                 }
 
                 if (err.message.includes("password is invalid")) {
-                    dispatch(authActions.setAuthStatusCode(401))
+                    dispatch(authActions.setAuthStatusCode(401));
                 }
 
-                if (err.message.includes("account has been temporarily disabled")) {
-                    dispatch(authActions.setAuthStatusCode(409))
+                if (
+                    err.message.includes(
+                        "account has been temporarily disabled"
+                    )
+                ) {
+                    dispatch(authActions.setAuthStatusCode(409));
                 }
             }
         }
     };
 
     const handleSendResetPasswordEmail = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         if (!email) {
             alert("Missing username!");
@@ -103,10 +106,12 @@ const Login = ({ show, onHide }) => {
 
         try {
             await FirebaseAuthService.sendPasswordResetEmail(email);
-            setEmailSent(true)
-            setUserEmail("")
+            setEmailSent(true);
+            setUserEmail("");
         } catch (err) {
-            alert(err.message);
+            if (err.message.includes("no user record")) {
+                dispatch(authActions.setAuthStatusCode(400));
+            }
         }
     };
 
@@ -120,25 +125,33 @@ const Login = ({ show, onHide }) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    {hasAccount && !resetPassword ? "Login" : resetPassword ? "Reset your password" : "Sign Up"}
+                    {hasAccount && !resetPassword
+                        ? "Login"
+                        : resetPassword
+                        ? "Reset your password"
+                        : "Sign Up"}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 {hasAccount && !resetPassword ? (
                     <Form onSubmit={handleSubmit}>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Group
+                            className="mb-3"
+                            controlId="formBasicEmail"
+                        >
                             <Form.Label>Email address</Form.Label>
                             <Form.Control
                                 type="email"
                                 required
                                 placeholder="Enter email"
                                 value={email}
+                                autoComplete="username"
                                 onChange={(e) => setUserEmail(e.target.value)}
                             />
                         </Form.Group>
 
                         <Form.Group
-                            className="mb-3"
+                            className="mb-1"
                             controlId="formBasicPassword"
                         >
                             <Form.Label>Password</Form.Label>
@@ -147,21 +160,18 @@ const Login = ({ show, onHide }) => {
                                 required
                                 placeholder="Password"
                                 value={password}
+                                autoComplete="current-password"
                                 onChange={(e) => setPassword(e.target.value)}
                             />
+                        </Form.Group>
 
-                            <section className="d-flex justify-content-between mt-1">
-                                <Form.Check
-                                    type="checkbox"
-                                    label="Remember me"
-                                />
-                                <Form.Text
-                                    className="text-primary custom-link"
-                                    onClick={() => showResetView(true)}
-                                >
-                                    Forgot password
-                                </Form.Text>
-                            </section>
+                        <Form.Group className="d-flex justify-content-end mt-1 mb-4" controlId="formRememberPassword">
+                            <Form.Text
+                                className="text-primary custom-link"
+                                onClick={() => showResetView(true)}
+                            >
+                                Forgot password
+                            </Form.Text>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">

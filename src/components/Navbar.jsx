@@ -28,7 +28,6 @@ const Navbar = () => {
     }
 
     useEffect(()=>{
-        console.log(isLoggedIn);
     }, [isLoggedIn])
 
 
