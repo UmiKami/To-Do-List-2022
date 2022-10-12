@@ -20,6 +20,7 @@ const Navbar = () => {
     const handleLogOut = async() => {
         await FirebaseAuthService.logoutUser();
         dispatch(authActions.setIsLoggedIn(false))
+        dispatch(authActions.setUserInfo({}));
         dispatch(authActions.setAuthStatusCode(209))
     }
 
