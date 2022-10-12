@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import FirebaseFireStoreService from "../FirebaseFirestoreService";
 
 const todoSlice = createSlice({
     name: "todo",
@@ -8,6 +9,18 @@ const todoSlice = createSlice({
     reducers: {
         addTask(state, { payload }) {
             state.taskList = [...state.taskList, payload];
+            
+            const addToDb = async() => {
+                try{
+                    const resp = await FirebaseFireStoreService.createTask("todos", payload)
+                    console.log("Database updated");
+                }catch(err){
+                    console.log("There was an error: ", err.message);
+                }
+            }
+
+
+            addToDb()
         },
         deleteTask(state, { payload }) {
             let targetIndex = payload;

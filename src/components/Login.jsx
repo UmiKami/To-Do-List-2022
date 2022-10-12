@@ -43,6 +43,7 @@ const Login = ({ show, onHide }) => {
                     verified: user.emailVerified,
                     username: user.displayName,
                     profilePic: user.photoURL,
+                    uid: user.uid
                 })
             );
 

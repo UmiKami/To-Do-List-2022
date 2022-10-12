@@ -7,6 +7,7 @@ const Input = () => {
     const dispatch = useDispatch();
 
     const tasks = useSelector(state => state.todo.taskList)
+    const userId = useSelector(state => state.auth.userInfo.uid)
 
     const handleChange = (e) => setInputText(e.target.value);
 
@@ -17,7 +18,7 @@ const Input = () => {
 
             !onlyWhiteSpaces &&
                 dispatch(
-                    todoActions.addTask({ label: inputText, done: false })
+                    todoActions.addTask({ label: inputText, done: false, user_id: userId})
                 );
             setInputText("");
         }
